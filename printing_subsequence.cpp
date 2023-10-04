@@ -9,8 +9,10 @@ void subsequences(vector<int> A,int idx,vector<int> temp){
         }cout<<endl;
         return;
     }
+    //take condition
     temp.push_back(A[idx]);
     subsequences(A,idx+1,temp);
+    //not take condition
     temp.pop_back();
     subsequences(A,idx+1,temp);
 }

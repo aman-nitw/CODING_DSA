@@ -1,0 +1,41 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+int sequence(int idx,vector<int> &result,int sum,vector<int> A,int target,int n){
+    
+    if(idx==n)
+    {
+        if(sum==target){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    sum+=A[idx];
+    result.push_back(A[idx]);
+    int l=(sequence(idx+1,result,sum,A,target,n));
+     
+    sum-=A[idx];
+    result.pop_back();
+    int r=(sequence(idx+1,result,sum,A,target,n));
+     
+    return l+r;
+    
+}
+int main()
+{
+    int n,k,x;
+    cout<<"enter the number of elements : ";
+    cin>>n;
+    cout<<"enter the target sum : ";
+    cin>>k;
+    vector<int> A;
+    cout<<"enter the elements of array : ";
+    for(int i=0;i<n;i++){
+        cin>>x;
+        A.push_back(x);
+    }
+    int idx=0,sum=0;
+    vector<int> result;
+    cout<<sequence(idx,result,sum,A,k,n);
+}
